@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Phonex Audio — Ingeniería de Sonido para Eventos</title>
+  <meta name="description" content="Phonex Audio: ingeniería de sonido para eventos corporativos, bodas y conciertos. Diseño sonoro, logística técnica y operación impecable." />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Phonex Audio — Ingeniería de Sonido para Eventos">
+  <meta property="og:description" content="Sonido impecable, cero sorpresas. Diseño y operación técnica premium.">
+  <meta property="og:url" content="https://tudominio.co">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tudominio.co/assets/og-cover.jpg">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Phonex Audio — Ingeniería de Sonido para Eventos">
+  <meta name="twitter:description" content="Sonido impecable, cero sorpresas. Diseño y operación técnica premium.">
+  <meta name="twitter:image" content="https://tudominio.co/assets/og-cover.jpg">
+
+  <!-- JSON-LD base: Organization + LocalBusiness + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":["Organization","LocalBusiness","WebSite"],
+    "name":"Phonex Audio",
+    "url":"https://tudominio.co",
+    "logo":"https://tudominio.co/assets/logo.png",
+    "image":"https://tudominio.co/assets/cover.jpg",
+    "description":"Ingeniería de sonido para eventos corporativos, bodas y conciertos. Diseño, logística y operación impecable.",
+    "areaServed":"CO",
+    "telephone":"+57 300 111 2233",
+    "email":"contacto@phonexaudio.co",
+    "address":{"@type":"PostalAddress","addressCountry":"CO","addressLocality":"Bogotá"},
+    "sameAs":["https://www.instagram.com/phonexaudio","https://www.linkedin.com/company/phonex-audio"],
+    "contactPoint":[{
+      "@type":"ContactPoint",
+      "contactType":"customer support",
+      "telephone":"+57 300 111 2233",
+      "availableLanguage":["es","en"]
+    }],
+    "@id":"https://tudominio.co/#org",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://tudominio.co/?s={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQ para SEO -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"¿Atienden fuera de Bogotá?","acceptedAnswer":{"@type":"Answer","text":"Sí. Cubrimos Bogotá y ciudades cercanas; para otras zonas coordinamos logística y viáticos."}},
+      {"@type":"Question","name":"¿Cómo definen la potencia adecuada?","acceptedAnswer":{"@type":"Answer","text":"Partimos del aforo, el tipo de música y el espacio. Realizamos cálculo de cobertura y pruebas para asegurar claridad e impacto sin distorsión."}},
+      {"@type":"Question","name":"¿Ofrecen microfonía inalámbrica para conferencias?","acceptedAnswer":{"@type":"Answer","text":"Sí, contamos con sets inalámbricos, consola y operador dedicado para asegurar inteligibilidad y evitar interferencias."}}
+    ]
+  }
+  </script>
+
+  <!-- Fuentes (preconnect + swap) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#0A192F; --bg:#f8f9fc; --card:#ffffff; --line:#e9edf3;
+      --brand-1:#3B82F6; --brand-2:#00BFA6; --brand-3:#0E1726;
+      --text-muted:#64748b; --radius:12px;
+      --shadow-md:0 4px 10px rgba(3,8,20,.06);
+      --shadow-lg:0 10px 40px rgba(3,8,20,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;text-rendering:optimizeLegibility}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.6;
+      background:var(--bg);
+      color:var(--ink);
+      position: relative;
+    }
+    /* Ruido sutil (desactivado en reduced-motion) */
+    @media (prefers-reduced-motion: no-preference){
+      body::before {
+        content: "";
+        position: fixed; inset: 0;
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
+        opacity: .02; z-index: -1; pointer-events: none;
+      }
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1160px;margin:auto;padding:0 24px}
+    :focus-visible{outline:3px solid var(--brand-1);outline-offset:2px;border-radius:8px}
+
+    /* Fondo Animado (pausa si reduced-motion) */
+    #hero-background { position: fixed; inset: 0; z-index: -2 }
+    @media (prefers-reduced-motion: reduce){
+      #hero-background{display:none}
+    }
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:60;background:var(--card);border-bottom:1px solid var(--line);backdrop-filter:saturate(1.2) blur(6px)}
+    .nav-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:64px;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand b{font-weight:800;letter-spacing:.6px}
+    .nav-links{display:flex;gap:24px; justify-self: center;}
+    .nav-links a{padding:8px 12px;font-weight:600;font-size:.95rem;border-radius:8px;transition:background-color .2s,color .2s}
+    .nav-links a:hover{background-color:var(--bg);color:var(--brand-1)}
+    .hamburger{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:var(--card); justify-self: end;}
+    @media (max-width: 900px){
+      .nav-inner{grid-template-columns:auto 1fr}
+      .nav-links{display:none}
+      .hamburger{display:inline-flex}
+    }
+    .mobile-drawer{
+      position:fixed;inset:64px 0 auto 0;background:var(--card);border-top:1px solid var(--line);
+      transform:translateY(-12px);opacity:0;pointer-events:none;transition:transform .2s,opacity .2s;box-shadow:var(--shadow-lg)
+    }
+    .mobile-drawer.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    .mobile-drawer a{display:block;padding:16px 24px;border-bottom:1px solid var(--line);font-weight:600}
+
+    /* HERO */
+    .hero{
+      min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:56px 0;text-align:center;position:relative;z-index:1;background:transparent
+    }
+    .hero::before{
+      content:'';position:absolute;inset:0;background:var(--bg);opacity:.84;z-index:-1;backdrop-filter: blur(2px)
+    }
+    .hero h1{font-size:clamp(2.8rem,6vw,4rem);line-height:1.1;margin:14px 0 16px;font-weight:800;letter-spacing:-.04em}
+    .hero p{color:var(--text-muted);max-width:720px;margin:0 auto 32px;font-size:1.08rem}
+    .cta{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;appearance:none;border:1px solid var(--line);border-bottom-width:3px;border-radius:10px;padding:14px 22px;font-weight:700;cursor:pointer;transition:transform .15s, box-shadow .15s}
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+    .btn:active{transform:translateY(1px);box-shadow:var(--shadow-md)}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));border-color:transparent transparent #2563EB transparent}
+    .btn-ghost{color:var(--ink);border-color:var(--line);background:var(--card);box-shadow:var(--shadow-md)}
+
+    /* CTA Fijo en Móvil */
+    .sticky-cta{position:fixed;left:0;right:0;bottom:0;display:none;gap:10px;padding:10px;background:rgba(255,255,255,.95);border-top:1px solid var(--line);z-index:70;backdrop-filter: blur(8px)}
+    @media (max-width:768px){.sticky-cta{display:flex}}
+
+    /* SECCIONES */
+    section{padding:84px 0}
+    .section-title{font-size:clamp(2.2rem,5vw,2.8rem);font-weight:800;margin:0 0 12px;text-align:center;letter-spacing:-.03em}
+    .section-subtitle{font-size:1.06rem;color:var(--text-muted);max-width:720px;margin:0 auto 44px;text-align:center}
+    .card{background:var(--card);border:1px solid var(--line);border-bottom:3px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-md);transition:transform .2s, box-shadow .2s}
+
+    /* TABS SERVICIOS */
+    .service-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:32px;flex-wrap:wrap}
+    .tab-btn{padding:12px 20px;font-size:1rem;font-weight:600;border-radius:10px;cursor:pointer;border:1px solid var(--line);border-bottom-width:3px;background:var(--card);transition:all .2s}
+    .tab-btn[aria-selected="true"]{background:linear-gradient(135deg,var(--brand-1),var(--brand-2));color:#fff;border-color:transparent}
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+    .service-card{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:32px;align-items:center;text-align:left}
+    @media (max-width:900px){.service-card{grid-template-columns:1fr}}
+    .service-details ul{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:16px}
+    .service-details li{display:flex;align-items:flex-start;gap:14px}
+    .service-details .icon{flex-shrink:0;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);color:var(--brand-1)}
+    .service-details .icon svg{width:22px;height:22px}
+    .service-details h3{font-size:1.6rem;margin:0}
+    .service-details h4{margin:0 0 4px;font-size:1.05rem}
+    .service-details p{margin:0;color:var(--text-muted);font-size:.96rem}
+    .service-image{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3}
+    .service-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+    .service-card:hover .service-image img{transform:scale(1.05)}
+
+    /* INVENTARIO */
+    .grid-3{display:grid;gap:24px;grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr}}
+    .inventory-card{padding:24px}
+    .inventory-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+    .inventory-card h3{margin:.3rem 0 .6rem;font-size:1.2rem;display:flex;align-items:center;gap:10px}
+    .inventory-card h3 svg{color:var(--brand-2)}
+    .inventory-card ul{list-style:none;padding-left:18px;margin:0}
+    .inventory-card li{position:relative;margin-bottom:6px}
+    .inventory-card li::before{content:"›";position:absolute;left:-15px;color:var(--brand-1);font-weight:600}
+
+    /* PROCESO */
+    .timeline{list-style:none;padding:0;max-width:800px;margin:auto;text-align:left}
+    .timeline li{display:flex;gap:16px;margin:12px 0;align-items:center}
+    .timeline .dot{width:32px;height:32px;border-radius:999px;flex:0 0 32px;background:linear-gradient(135deg,var(--brand-1),var(--brand-2));color:#fff;display:grid;place-items:center;font-weight:800;font-size:.9rem}
+
+    /* FORMULARIO */
+    form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:720px){form .row{grid-template-columns:1fr}}
+    #quote-form input,#quote-form textarea,#quote-form select{
+      width:100%;margin:8px 0 12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:inherit;font-family:inherit;font-size:1rem
+    }
+    #quote-form input:focus,#quote-form textarea:focus,#quote-form select:focus{outline:2px solid var(--brand-1)}
+    .help{font-size:.85rem;color:var(--text-muted)}
+
+    /* FAQ acordeón */
+    .faq{max-width:900px;margin:0 auto;display:grid;gap:12px}
+    .faq details{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:14px 18px}
+    .faq summary{cursor:pointer;font-weight:700}
+    .faq p{margin:.6rem 0 0;color:var(--text-muted)}
+
+    /* Aparición suave */
+    .fade-in-section{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+    .fade-in-section.is-visible{opacity:1;transform:none}
+
+    /* FOOTER */
+    .footer{padding:40px 0;text-align:center;color:var(--text-muted);background:var(--card);border-top:1px solid var(--line)}
+  </style>
+</head>
+<body>
+  <canvas id="hero-background"></canvas>
+
+  <!-- NAV -->
+  <nav class="nav" role="navigation" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="#" class="brand" aria-label="Phonex Audio, inicio">
+        <svg width="40" height="40" viewBox="0 0 64 64" aria-hidden="true" fetchpriority="high">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#00BFA6"/></linearGradient></defs>
+          <path d="M22 26 32 20 42 26 42 38 32 44 22 38Z" fill="none" stroke="url(#g)" stroke-width="2.8" stroke-linejoin="round"/>
+          <path d="M26 36c-2.2-3.2-.1-6.6 3.8-6.6 0-3 2.2-4.8 4.7-4.8 2.9 0 5.2 2.2 5.2 5 0 2-1.3 3.7-3.2 4.7-1.6.9-3.6 1.1-5.6.6-1.8-.4-3.3.2-4.1 1.1Z" fill="url(#g)"/>
+          <path d="M38 24 46 21 42 28Z" fill="url(#g)"/>
+          <path d="M39 27 47 25 43 31Z" fill="url(#g)"/>
+          <rect x="45" y="32" width="2.6" height="10" rx="1.3" fill="url(#g)"/>
+          <rect x="49" y="30" width="2.6" height="14" rx="1.3" fill="url(#g)"/>
+          <rect x="53" y="28" width="2.6" height="18" rx="1.3" fill="url(#g)"/>
+        </svg>
+        <b>Phonex Audio</b>
+      </a>
+
+      <div class="nav-links" role="menubar" aria-label="Secciones">
+        <a role="menuitem" href="#servicios">Servicios</a>
+        <a role="menuitem" href="#inventario">Inventario</a>
+        <a role="menuitem" href="#proceso">Proceso</a>
+        <a role="menuitem" href="#contacto">Contacto</a>
+      </div>
+
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-drawer">
+        <!-- icono -->
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></svg>
+      </button>
+    </div>
+
+    <div id="mobile-drawer" class="mobile-drawer" role="menu" aria-label="Menú móvil">
+      <a href="#servicios" role="menuitem">Servicios</a>
+      <a href="#inventario" role="menuitem">Inventario</a>
+      <a href="#proceso" role="menuitem">Proceso</a>
+      <a href="#contacto" role="menuitem">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1>Sonido impecable,<br>cero sorpresas.</h1>
+      <p>Diseñamos y operamos experiencias sonoras premium para eventos corporativos, bodas de alto nivel y conciertos. Ingeniería, consultoría y ejecución con precisión.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#servicios">Explorar Servicios</a>
+        <a class="btn btn-ghost" href="#contacto">Solicitar Cotización</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <!-- SERVICIOS (TABS) -->
+    <section id="servicios" class="fade-in-section" aria-label="Servicios">
+      <div class="container">
+        <h2 class="section-title">Soluciones a la medida</h2>
+        <p class="section-subtitle">Selecciona el formato que mejor se adapte a tu evento para ver detalles técnicos y equipamiento.</p>
+
+        <div class="service-tabs" role="tablist" aria-label="Formatos de servicio">
+          <button role="tab" aria-selected="true" aria-controls="panel-social" id="tab-social" class="tab-btn">Social Pequeño</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-corporativo" id="tab-corporativo" class="tab-btn">Corporativo</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-bodas" id="tab-bodas" class="tab-btn">Bodas y Social</button>
+          <button role="tab" aria-selected="false" aria-controls="panel-bandas" id="tab-bandas" class="tab-btn">Bandas y Conciertos</button>
+        </div>
+
+        <div class="tab-panels-container">
+          <!-- Social -->
+          <section id="panel-social" role="tabpanel" tabindex="0" aria-labelledby="tab-social" class="tab-content active">
+            <article class="card service-card">
+              <div class="service-details">
+                <h3>Formato Social Pequeño</h3>
+                <p>Ambiente cálido y definido para conversar y bailar en espacios reducidos.</p>
+                <ul>
+                  <li>
+                    <div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+                    <div><h4>Capacidad: hasta 80 personas</h4><p>Reuniones íntimas y celebraciones familiares.</p></div>
+                  </li>
+                  <li>
+                    <div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></div>
+                    <div><h4>Equipamiento clave</h4><p>2 cabinas Beta 3 N15a, 1 sub EB 118a, XDJ-RR y 2 PAR LED.</p></div>
+                  </li>
+                  <li>
+                    <div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+                    <div><h4>Ideal para</h4><p>Cumpleaños, aniversarios, bautizos y salones sociales.</p></div>
+                  </li>
+                </ul>
+                <div class="cta" style="justify-content:flex-start">
+                  <a href="#contacto" class="btn btn-primary">Cotizar este formato</a>
+                </div>
+              </div>
+              <div class="service-image">
+                <img src="https://placehold.co/900x675/3B82F6/FFFFFF?text=Evento+Social"
+                     srcset="https://placehold.co/600x450/3B82F6/FFFFFF?text=Evento+Social 600w, https://placehold.co/900x675/3B82F6/FFFFFF?text=Evento+Social 900w"
+                     sizes="(max-width:900px) 100vw, 50vw"
+                     alt="Evento social pequeño" loading="lazy" decoding="async" width="900" height="675">
+              </div>
+            </article>
+          </section>
+
+          <!-- Corporativo -->
+          <section id="panel-corporativo" role="tabpanel" tabindex="0" aria-labelledby="tab-corporativo" class="tab-content">
+            <article class="card service-card">
+              <div class="service-details">
+                <h3>Formato Corporativo</h3>
+                <p>Máxima inteligibilidad de voz y un montaje sobrio que refuerza tu marca.</p>
+                <ul>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><h4>Capacidad: hasta 150 personas</h4><p>Cada palabra se escucha con claridad.</p></div></li>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></div><div><h4>Equipamiento clave</h4><p>2 N15a, consola Xenyx 2442FX, set 4 inalámbricos.</p></div></li>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><h4>Ideal para</h4><p>Conferencias, lanzamientos, asambleas y capacitaciones.</p></div></li>
+                </ul>
+                <div class="cta" style="justify-content:flex-start"><a href="#contacto" class="btn btn-primary">Cotizar este formato</a></div>
+              </div>
+              <div class="service-image">
+                <img src="https://placehold.co/900x675/00BFA6/FFFFFF?text=Evento+Corporativo"
+                     srcset="https://placehold.co/600x450/00BFA6/FFFFFF?text=Evento+Corporativo 600w, https://placehold.co/900x675/00BFA6/FFFFFF?text=Evento+Corporativo 900w"
+                     sizes="(max-width:900px) 100vw, 50vw"
+                     alt="Evento corporativo" loading="lazy" decoding="async" width="900" height="675">
+              </div>
+            </article>
+          </section>
+
+          <!-- Bodas -->
+          <section id="panel-bodas" role="tabpanel" tabindex="0" aria-labelledby="tab-bodas" class="tab-content">
+            <article class="card service-card">
+              <div class="service-details">
+                <h3>Formato Bodas y Social</h3>
+                <p>Música potente y nítida con cobertura adaptable para el día más importante.</p>
+                <ul>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><h4>Capacidad: 100–300 personas</h4><p>Desde la ceremonia hasta la última canción de la fiesta.</p></div></li>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></div><div><h4>Equipamiento clave</h4><p>Sistema Line Array o N15a, 2 Subs Dobles, Iluminación (PAR LED, Beam), Torres y Humo.</p></div></li>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><h4>Ideal para</h4><p>Bodas, 15 años, proms y eventos de fin de año en haciendas o salones.</p></div></li>
+                </ul>
+                <div class="cta" style="justify-content:flex-start"><a href="#contacto" class="btn btn-primary">Cotizar este formato</a></div>
+              </div>
+              <div class="service-image">
+                <img src="https://placehold.co/900x675/9333ea/FFFFFF?text=Boda+y+Celebración"
+                     srcset="https://placehold.co/600x450/9333ea/FFFFFF?text=Boda+y+Celebración 600w, https://placehold.co/900x675/9333ea/FFFFFF?text=Boda+y+Celebración 900w"
+                     sizes="(max-width:900px) 100vw, 50vw"
+                     alt="Boda y evento social" loading="lazy" decoding="async" width="900" height="675">
+              </div>
+            </article>
+          </section>
+
+          <!-- Bandas -->
+          <section id="panel-bandas" role="tabpanel" tabindex="0" aria-labelledby="tab-bandas" class="tab-content">
+            <article class="card service-card">
+              <div class="service-details">
+                <h3>Formato Bandas & Conciertos</h3>
+                <p>Refuerzo sonoro de alto impacto, con la claridad y presión que un show en vivo demanda.</p>
+                <ul>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><h4>Capacidad: 300–700 personas</h4><p>Potencia y cobertura uniforme para que la música llegue a todos.</p></div></li>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></div><div><h4>Equipamiento clave</h4><p>Line Array Beta 3 (4 por lado), Subs, Delays, Consola, Microfonía Shure/Behringer y show de luces.</p></div></li>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><h4>Ideal para</h4><p>Conciertos, ferias, orquestas en vivo y festivales de mediana escala.</p></div></li>
+                </ul>
+                <div class="cta" style="justify-content:flex-start"><a href="#contacto" class="btn btn-primary">Cotizar este formato</a></div>
+              </div>
+              <div class="service-image">
+                <img src="https://placehold.co/900x675/c026d3/FFFFFF?text=Concierto+y+Banda"
+                     srcset="https://placehold.co/600x450/c026d3/FFFFFF?text=Concierto+y+Banda 600w, https://placehold.co/900x675/c026d3/FFFFFF?text=Concierto+y+Banda 900w"
+                     sizes="(max-width:900px) 100vw, 50vw"
+                     alt="Concierto y banda" loading="lazy" decoding="async" width="900" height="675">
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVENTARIO -->
+    <section id="inventario" class="fade-in-section" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)" aria-label="Inventario">
+      <div class="container">
+        <h2 class="section-title">Inventario técnico profesional</h2>
+        <p class="section-subtitle">Equipos mantenidos y calibrados antes de cada evento. Cableado seguro y redundancias críticas para máxima fiabilidad.</p>
+        <div class="grid-3" aria-live="polite">
+          <div class="card inventory-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              Sistemas de sonido
+            </h3>
+            <ul>
+              <li>2 × Beta 3 N15a (activos)</li>
+              <li>4 × Beta 3 R4/R8 (Line Array)</li>
+              <li>2 × Sub Beta 3 TW 218BA</li>
+              <li>1 × Sub Beta 3 EB 118a</li>
+            </ul>
+          </div>
+
+          <div class="card inventory-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              Consolas y control
+            </h3>
+            <ul>
+              <li>Behringer Xenyx 2442FX</li>
+              <li>Pioneer XDJ-RR</li>
+            </ul>
+          </div>
+
+          <div class="card inventory-card">
+            <h3>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+              Microfonía
+            </h3>
+            <ul>
+              <li>Set inalámbrico Phenyx Pro</li>
+              <li>Shure (SV200, PGA52, SM57)</li>
+              <li>Behringer (57S, C2)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section id="proceso" class="fade-in-section" aria-label="Proceso">
+      <div class="container">
+        <h2 class="section-title">Nuestro proceso: precisión en 5 pasos</h2>
+        <p class="section-subtitle">De la consulta inicial al desmontaje final, garantizamos una ejecución impecable y comunicación constante.</p>
+        <ul class="timeline">
+          <li><span class="dot">1</span><div><strong>Consulta y diseño sonoro.</strong> Objetivos, aforo y espacio para una propuesta a medida.</div></li>
+          <li><span class="dot">2</span><div><strong>Planificación y logística.</strong> Potencia, energía, tiempos, rutas y seguridad.</div></li>
+          <li><span class="dot">3</span><div><strong>Montaje y pruebas.</strong> Instalación anticipada y calibración.</div></li>
+          <li><span class="dot">4</span><div><strong>Operación en vivo.</strong> Ingeniero dedicado y monitoreo constante.</div></li>
+          <li><span class="dot">5</span><div><strong>Desmontaje eficiente.</strong> Retiro ordenado y seguro.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ visible -->
+    <section aria-label="Preguntas frecuentes" class="fade-in-section">
+      <div class="container">
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <div class="faq">
+          <details>
+            <summary>¿Atienden fuera de Bogotá?</summary>
+            <p>Sí, cubrimos Bogotá y ciudades cercanas. Para otras zonas coordinamos logística y viáticos.</p>
+          </details>
+          <details>
+            <summary>¿Cómo definen la potencia adecuada?</summary>
+            <p>Según aforo, música y espacio. Calculamos cobertura, realizamos pruebas y ajustamos niveles y filtros para garantizar claridad.</p>
+          </details>
+          <details>
+            <summary>¿Ofrecen microfonía inalámbrica y grabación?</summary>
+            <p>Contamos con sets inalámbricos y podemos grabar audio del evento si lo requieres (previa coordinación).</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO / COTIZACIÓN -->
+    <section id="contacto" class="fade-in-section" aria-label="Contacto">
+      <div class="container">
+        <div class="card" style="padding:40px 32px;background:var(--brand-3);color:#fff">
+          <h2 class="section-title" style="margin-top:0;color:#fff">¿Listo para un sonido legendario?</h2>
+          <p class="section-subtitle" style="color:#cbd5e1">Cuéntanos sobre tu evento. Te enviaremos una propuesta técnica clara y una cotización sin compromiso.</p>
+
+          <form id="quote-form" action="https://formspree.io/f/tu_id" method="POST" style="max-width: 720px; margin: auto;" novalidate>
+            <div class="row">
+              <input name="nombre" placeholder="Nombre" autocomplete="name" required aria-label="Nombre">
+              <input name="email" type="email" placeholder="Email" autocomplete="email" required aria-label="Email">
+            </div>
+            <div class="row">
+              <input name="telefono" placeholder="Teléfono / WhatsApp" inputmode="tel" pattern="^[0-9+\s()-]{7,}$" required aria-label="Teléfono">
+              <input name="fecha" type="date" placeholder="Fecha del evento" aria-label="Fecha del evento">
+            </div>
+            <div class="row">
+              <select name="tipo" aria-label="Tipo de evento" required>
+                <option value="" disabled selected>Tipo de evento</option>
+                <option>Corporativo</option>
+                <option>Boda</option>
+                <option>15 años</option>
+                <option>Concierto / Banda</option>
+                <option>Social pequeño</option>
+              </select>
+              <input name="aforo" type="number" min="1" step="1" placeholder="Aforo estimado" aria-label="Aforo">
+            </div>
+            <textarea name="detalles" rows="4" placeholder="Espacio (interior/exterior), ciudad, horario, requerimientos especiales..."></textarea>
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <div class="cta" style="justify-content:center;margin-top:8px">
+              <button class="btn btn-primary" type="submit">Enviar Solicitud</button>
+              <a id="wa-btn" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+            <p id="form-msg" class="help" role="status" aria-live="polite" style="text-align:center;margin-top:8px"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      © <span id="y"></span> Phonex Audio · Ingeniería de Sonido para Eventos · Todos los derechos reservados
+    </div>
+  </footer>
+
+  <!-- CTA Fijo en Móvil -->
+  <div class="sticky-cta" aria-label="Acciones rápidas">
+    <a class="btn btn-primary" style="flex:1" href="https://wa.me/573001112233?text=Hola%20Phonex%20Audio%2C%20quiero%20cotizar%20un%20evento" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn-ghost" style="flex:1" href="#contacto">Cotización</a>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Año automático
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Menú móvil
+    const burger = document.querySelector('.hamburger');
+    const drawer = document.getElementById('mobile-drawer');
+    burger?.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false');
+    }));
+
+    // Tabs accesibles
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+
+    function activateTab(t){
+      tabs.forEach(b => b.setAttribute('aria-selected','false'));
+      panels.forEach(p => { p.style.display='none'; p.classList.remove('active'); });
+      t.setAttribute('aria-selected','true');
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      if(panel){ panel.style.display='block'; panel.classList.add('active'); }
+      t.focus();
+    }
+    tabs.forEach(t => {
+      t.addEventListener('click', () => activateTab(t));
+      t.addEventListener('keydown', e => {
+        const i = tabs.indexOf(t);
+        if(e.key==='ArrowRight') activateTab(tabs[(i+1)%tabs.length]);
+        if(e.key==='ArrowLeft') activateTab(tabs[(i-1+tabs.length)%tabs.length]);
+      });
+    });
+    const initial = document.querySelector('[role="tab"][aria-selected="true"]'); if(initial) activateTab(initial);
+
+    // Fade-in on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(el => { if(el.isIntersecting) el.target.classList.add('is-visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-section').forEach(el => io.observe(el));
+
+    // Canvas ecualizador (pausado si reduced-motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canvas = document.getElementById('hero-background');
+    if (!prefersReduced && canvas) {
+      const ctx = canvas.getContext('2d');
+      let bars = [], frame = 0;
+      const barWidth = 20, barGap = 10;
+      const colors = ['rgba(59,130,246,0.3)','rgba(0,191,166,0.3)','rgba(100,116,139,0.3)'];
+
+      class Bar {
+        constructor(x, h, color){ this.x=x; this.h=h; this.color=color; this.height=0; }
+        update(f){
+          const w1 = Math.sin(this.x*0.015 + f*0.8);
+          const w2 = Math.sin(this.x*0.025 + f*1.2);
+          const w3 = Math.sin(this.x*0.005 + f*0.5);
+          const combined = (w1+w2+w3)/3;
+          const base = this.h*0.2, amp = this.h*0.2;
+          this.height = base + combined*amp;
+        }
+        draw(){
+          ctx.fillStyle=this.color;
+          ctx.fillRect(this.x, this.h - this.height, barWidth, this.height);
+        }
+      }
+      function init(){
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        bars = [];
+        const n = Math.floor(canvas.width / (barWidth + barGap));
+        for(let i=0;i<n;i++){
+          bars.push(new Bar(i*(barWidth+barGap), canvas.height, colors[i%colors.length]));
+        }
+      }
+      function loop(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        frame += 0.008;
+        bars.forEach(b => { b.update(frame); b.draw(); });
+        requestAnimationFrame(loop);
+      }
+      window.addEventListener('resize', init, { passive:true });
+      init(); loop();
+    }
+
+    // Formulario: WhatsApp prellenado + feedback simple
+    const form = document.getElementById('quote-form');
+    const msg = document.getElementById('form-msg');
+    const wa = document.getElementById('wa-btn');
+    function buildWAUrl() {
+      const nombre = encodeURIComponent(form?.nombre?.value || '');
+      const tipo = encodeURIComponent(form?.tipo?.value || '');
+      const fecha = encodeURIComponent(form?.fecha?.value || '');
+      const aforo = encodeURIComponent(form?.aforo?.value || '');
+      const detalles = encodeURIComponent(form?.detalles?.value || '');
+      const text = `Hola Phonex Audio, soy ${nombre}. Quiero cotizar un evento (${tipo}) el ${fecha}, aforo ${aforo}. Detalles: ${detalles}`;
+      return `https://wa.me/573001112233?text=${text}`;
+    }
+    if (wa) {
+      wa.href = buildWAUrl();
+      wa.addEventListener('click', () => { /* tracking sencillo */ console.log('WA click'); });
+    }
+    form?.addEventListener('input', () => { if (wa) wa.href = buildWAUrl(); });
+    form?.addEventListener('submit', (e) => {
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        msg.textContent = 'Revisa los campos marcados. Necesitamos nombre, email y teléfono válidos.';
+      } else {
+        msg.textContent = 'Enviando…';
+      }
+    });
+  });
+  </script>
+</body>
+</html>
