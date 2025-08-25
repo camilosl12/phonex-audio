@@ -232,40 +232,6 @@
       transform: translateY(0);
     }
     
-    /* === NUEVO: SECCIÓN TESTIMONIOS === */
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 24px;
-    }
-    .testimonial-card {
-        background: var(--card);
-        padding: 28px;
-        border-radius: var(--radius);
-        border: 1px solid var(--line);
-        box-shadow: var(--shadow-md);
-        display: flex;
-        flex-direction: column;
-    }
-    .testimonial-card blockquote {
-        margin: 0 0 16px;
-        font-style: italic;
-        color: var(--text-muted);
-        border-left: 3px solid var(--brand-1);
-        padding-left: 16px;
-        flex-grow: 1;
-    }
-    .testimonial-card footer {
-        font-weight: 700;
-        color: var(--ink);
-    }
-    .testimonial-card footer span {
-        display: block;
-        font-weight: 500;
-        color: var(--brand-2);
-        font-size: 0.9rem;
-    }
-
     /* TABS SERVICIOS */
     .service-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:32px;flex-wrap:wrap}
     .tab-btn{padding:12px 20px;font-size:1rem;font-weight:600;border-radius:10px;cursor:pointer;border:1px solid var(--line);border-bottom-width:3px;background:var(--card);transition:all .2s}
@@ -331,14 +297,23 @@
     .speaker-copy h3{margin:0 0 6px;font-size:1.4rem}
     .speaker-copy p{margin:0;color:var(--text-muted)}
 
-    .speaker-visual{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%),
+    .speaker-visual{
+      position:relative;
+      aspect-ratio:1/1;
+      border-radius:18px;
+      overflow:hidden;
+      background:radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%),
                       radial-gradient(120% 120% at 0% 100%, rgba(0,191,166,0.18), transparent 60%), #0b1220;
-      border:1px solid #0f1930; box-shadow:0 20px 60px rgba(3,8,20,.28);
-      transform:translateX(100px) scale(.96); opacity:0; filter:blur(10px); /* CAMBIO: Aumentado translateX */
-      transition:transform .9s cubic-bezier(.2,.8,.2,1), opacity .8s ease, filter .8s ease;
+      border:1px solid #0f1930; 
+      box-shadow:0 20px 60px rgba(3,8,20,.28);
+      /* El estado inicial se define con JS, pero dejamos un fallback */
+      transform:translateX(100px) scale(.96); 
+      opacity:0; 
+      filter:blur(10px);
+      /* CAMBIO: Se elimina la transición para que la animación sea controlada 100% por el scroll */
       will-change: transform, opacity, filter;
     }
-    .speaker-visual.in{transform:translateX(0) scale(1); opacity:1; filter:blur(0)}
+    /* CAMBIO: La clase .in ya no es necesaria, la animación ahora se controla vía JavaScript */
 
     /* Aro del parlante */
     .cone{position:absolute; inset:8%; border-radius:50%; background:radial-gradient(circle at 40% 40%, #1b2440 0%, #0e1529 55%, #0a1226 100%); box-shadow:inset 0 0 30px rgba(0,0,0,.6)}
@@ -446,9 +421,7 @@
     <!-- SERVICIOS (TABS) -->
     <section id="servicios" class="fade-in-section" aria-label="Servicios">
       <div class="container">
-        <h2 class="section-title">Soluciones a la medida</h2>
-        <p class="section-subtitle">Selecciona el formato que mejor se adapte a tu evento para ver detalles técnicos y equipamiento.</p>
-
+        <!-- CAMBIO: Título y subtítulo movidos aquí -->
         <div class="speaker-reveal-wrap">
           <div class="speaker-reveal">
             <div class="speaker-copy">
@@ -466,6 +439,9 @@
             </figure>
           </div>
         </div>
+        
+        <h2 class="section-title">Soluciones a la medida</h2>
+        <p class="section-subtitle">Selecciona el formato que mejor se adapte a tu evento para ver detalles técnicos y equipamiento.</p>
 
         <div class="service-tabs" role="tablist" aria-label="Formatos de servicio">
           <button role="tab" aria-selected="true" aria-controls="panel-social" id="tab-social" class="tab-btn">Social Pequeño</button>
@@ -651,37 +627,6 @@
       </div>
     </section>
 
-    <!-- === NUEVO: SECCIÓN TESTIMONIOS === -->
-    <section id="testimonios" class="fade-in-section" aria-label="Testimonios de clientes">
-        <div class="container">
-            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-            <p class="section-subtitle">La tranquilidad y el éxito de sus eventos es nuestra mayor satisfacción.</p>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <blockquote>"El sonido de nuestra boda fue simplemente perfecto. Desde la ceremonia hasta la fiesta, todo se escuchó con una claridad increíble. ¡Gracias por su profesionalismo!"</blockquote>
-                    <footer>
-                        Ana & David
-                        <span>Novios Satisfechos</span>
-                    </footer>
-                </div>
-                <div class="testimonial-card">
-                    <blockquote>"Contratamos a Phonex para nuestro lanzamiento de producto y el resultado superó las expectativas. Montaje rápido, discreto y una operación sin fallas. Totalmente recomendados."</blockquote>
-                    <footer>
-                        Laura Jiménez
-                        <span>Gerente de Marketing, TechCorp</span>
-                    </footer>
-                </div>
-                <div class="testimonial-card">
-                    <blockquote>"Como wedding planner, necesito proveedores de confianza. Phonex Audio es mi primera opción para sonido. Siempre puntuales, proactivos y con una calidad de audio excepcional."</blockquote>
-                    <footer>
-                        Sofía Restrepo
-                        <span>Wedding Planner</span>
-                    </footer>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- CONTACTO / COTIZACIÓN -->
     <section id="contacto" class="fade-in-section" aria-label="Contacto">
       <div class="container">
@@ -821,18 +766,58 @@
       init(); loop();
     }
 
-    // IntersectionObserver para activar el parlante
-    const speaker = document.querySelector('.speaker-visual');
-    if (speaker) {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            speaker.classList.add('in');
-            obs.disconnect();
-          }
-        });
-      }, { threshold: 0.35 });
-      obs.observe(speaker);
+    // === CAMBIO: Animación del parlante ahora sincronizada con el scroll ===
+    const speakerVisual = document.querySelector('.speaker-visual');
+    const speakerWrap = document.querySelector('.speaker-reveal-wrap');
+
+    if (speakerVisual && speakerWrap) {
+        const animateSpeakerOnScroll = () => {
+            const rect = speakerWrap.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            // Define el rango de scroll para la animación.
+            // Empieza cuando la parte superior del contenedor está a 150px del borde inferior de la pantalla.
+            const animationStartPoint = viewportHeight - 150;
+            // Termina cuando la parte superior del contenedor está a 350px del borde superior de la pantalla.
+            const animationEndPoint = 350;
+            
+            const animationRange = animationStartPoint - animationEndPoint;
+            const elementTopPosition = rect.top;
+
+            // Calcula el progreso de la animación como un valor entre 0 y 1
+            let progress = (animationStartPoint - elementTopPosition) / animationRange;
+            
+            // Limita el progreso entre 0 y 1 para evitar valores fuera de rango
+            progress = Math.max(0, Math.min(1, progress));
+
+            // Interpola los valores de las propiedades CSS basados en el progreso del scroll
+            const translateX = 100 - (100 * progress);
+            const scale = 0.96 + (0.04 * progress);
+            const opacity = progress;
+            const blur = 10 - (10 * progress);
+
+            // Actualiza los estilos del elemento directamente
+            speakerVisual.style.opacity = opacity;
+            speakerVisual.style.filter = `blur(${blur}px)`;
+            speakerVisual.style.transform = `translateX(${translateX}px) scale(${scale})`;
+        };
+
+        // Usa requestAnimationFrame para optimizar el rendimiento y evitar recalculos innecesarios
+        let isTicking = false;
+        const scrollHandler = () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(() => {
+                    animateSpeakerOnScroll();
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        };
+
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        
+        // Ejecuta la función una vez al cargar para establecer el estado inicial correcto
+        animateSpeakerOnScroll(); 
     }
 
     // Formulario: WhatsApp prellenado + feedback simple
