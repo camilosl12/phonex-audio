@@ -85,6 +85,7 @@
       background:var(--bg);
       color:var(--ink);
       position: relative;
+      overflow-x: hidden;
     }
     /* Ruido sutil (desactivado en reduced-motion) */
     @media (prefers-reduced-motion: no-preference){
@@ -152,6 +153,119 @@
     .section-subtitle{font-size:1.06rem;color:var(--text-muted);max-width:720px;margin:0 auto 44px;text-align:center}
     .card{background:var(--card);border:1px solid var(--line);border-bottom:3px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-md);transition:transform .2s, box-shadow .2s}
 
+    /* === NUEVO: SECCIÓN 'POR QUÉ ELEGIRNOS' === */
+    .differentiators-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      text-align: left;
+    }
+    .differentiator-card {
+      padding: 24px;
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      border-bottom: 3px solid var(--line);
+      box-shadow: var(--shadow-md);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .differentiator-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .differentiator-card .icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .differentiator-card .icon svg { width: 26px; height: 26px; }
+    .differentiator-card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+    .differentiator-card p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
+
+    /* === NUEVO: SECCIÓN PORTAFOLIO === */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4 / 3;
+      display: block;
+    }
+    .portfolio-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    .portfolio-item:hover img {
+      transform: scale(1.08);
+    }
+    .portfolio-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 25, 47, 0.85) 0%, transparent 80%);
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .portfolio-item:hover .overlay {
+      opacity: 1;
+    }
+    .portfolio-item h3 {
+      color: #fff;
+      margin: 0;
+      font-size: 1.2rem;
+      transform: translateY(10px);
+      transition: transform .3s ease;
+    }
+    .portfolio-item:hover h3 {
+      transform: translateY(0);
+    }
+    
+    /* === NUEVO: SECCIÓN TESTIMONIOS === */
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+    }
+    .testimonial-card {
+        background: var(--card);
+        padding: 28px;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow-md);
+        display: flex;
+        flex-direction: column;
+    }
+    .testimonial-card blockquote {
+        margin: 0 0 16px;
+        font-style: italic;
+        color: var(--text-muted);
+        border-left: 3px solid var(--brand-1);
+        padding-left: 16px;
+        flex-grow: 1;
+    }
+    .testimonial-card footer {
+        font-weight: 700;
+        color: var(--ink);
+    }
+    .testimonial-card footer span {
+        display: block;
+        font-weight: 500;
+        color: var(--brand-2);
+        font-size: 0.9rem;
+    }
+
     /* TABS SERVICIOS */
     .service-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:32px;flex-wrap:wrap}
     .tab-btn{padding:12px 20px;font-size:1rem;font-weight:600;border-radius:10px;cursor:pointer;border:1px solid var(--line);border-bottom-width:3px;background:var(--card);transition:all .2s}
@@ -191,7 +305,7 @@
     form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     @media (max-width:720px){form .row{grid-template-columns:1fr}}
     #quote-form input,#quote-form textarea,#quote-form select{
-      width:100%;margin:8px 0 12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:inherit;font-family:inherit;font-size:1rem
+      width:100%;margin:8px 0 12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font-family:inherit;font-size:1rem
     }
     #quote-form input:focus,#quote-form textarea:focus,#quote-form select:focus{outline:2px solid var(--brand-1)}
     .help{font-size:.85rem;color:var(--text-muted)}
@@ -208,6 +322,44 @@
 
     /* FOOTER */
     .footer{padding:40px 0;text-align:center;color:var(--text-muted);background:var(--card);border-top:1px solid var(--line)}
+
+    /* === ANIMACIÓN IMPACTANTE: PARLANTE REVEAL === */
+    .speaker-reveal-wrap{position:relative;max-width:980px;margin:24px auto 32px}
+    .speaker-reveal{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:center}
+    @media (max-width:900px){.speaker-reveal{grid-template-columns:1fr}}
+    .speaker-copy{padding:18px 22px;border:1px dashed var(--line);border-radius:14px;background:linear-gradient(180deg,#fff, #fafcff)}
+    .speaker-copy h3{margin:0 0 6px;font-size:1.4rem}
+    .speaker-copy p{margin:0;color:var(--text-muted)}
+
+    .speaker-visual{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;background:radial-gradient(120% 120% at 100% 0%, rgba(59,130,246,0.18), transparent 60%),
+                      radial-gradient(120% 120% at 0% 100%, rgba(0,191,166,0.18), transparent 60%), #0b1220;
+      border:1px solid #0f1930; box-shadow:0 20px 60px rgba(3,8,20,.28);
+      transform:translateX(100px) scale(.96); opacity:0; filter:blur(10px); /* CAMBIO: Aumentado translateX */
+      transition:transform .9s cubic-bezier(.2,.8,.2,1), opacity .8s ease, filter .8s ease;
+      will-change: transform, opacity, filter;
+    }
+    .speaker-visual.in{transform:translateX(0) scale(1); opacity:1; filter:blur(0)}
+
+    /* Aro del parlante */
+    .cone{position:absolute; inset:8%; border-radius:50%; background:radial-gradient(circle at 40% 40%, #1b2440 0%, #0e1529 55%, #0a1226 100%); box-shadow:inset 0 0 30px rgba(0,0,0,.6)}
+    .surround{position:absolute; inset:0; border-radius:22px; box-shadow: inset 0 0 0 12px #0d1424, inset 0 0 0 20px #1a233b;}
+    .dustcap{position:absolute; inset:35% 35%; border-radius:50%; background:radial-gradient(circle at 35% 35%, #161f35, #0a1226 70%); box-shadow:inset 0 10px 30px rgba(0,0,0,.5)}
+
+    /* Ondas (pseudo líneas) */
+    .waves{position:absolute; inset:-10%; pointer-events:none;}
+    .wave{position:absolute; border:2px solid rgba(59,130,246,.35); border-radius:50%; inset:45%; animation:wave 2.6s ease-out infinite;}
+    .wave:nth-child(2){animation-delay:.5s; border-color: rgba(0,191,166,.35)}
+    .wave:nth-child(3){animation-delay:1s}
+    @keyframes wave{ from{ transform:scale(.6); opacity:.8 } to{ transform:scale(2.5); opacity:0 } }
+
+    /* Vibración sutil del cono */
+    @media (prefers-reduced-motion: no-preference){
+      .cone, .dustcap{ animation:thump 1.3s ease-in-out infinite }
+      @keyframes thump{ 0%,100%{ transform:translateZ(0) } 50%{ transform:translateZ(0) scale(1.015) } }
+    }
+
+    /* Etiqueta flotante */
+    .badge-live{position:absolute; top:14px; left:14px; font-weight:800; font-size:.78rem; color:#001420; background:linear-gradient(135deg,var(--brand-1),var(--brand-2)); padding:8px 10px; border-radius:10px; box-shadow:var(--shadow-md)}
   </style>
 </head>
 <body>
@@ -232,19 +384,20 @@
 
       <div class="nav-links" role="menubar" aria-label="Secciones">
         <a role="menuitem" href="#servicios">Servicios</a>
+        <a role="menuitem" href="#proyectos">Proyectos</a> <!-- NUEVO -->
         <a role="menuitem" href="#inventario">Inventario</a>
         <a role="menuitem" href="#proceso">Proceso</a>
         <a role="menuitem" href="#contacto">Contacto</a>
       </div>
 
       <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-drawer">
-        <!-- icono -->
         <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></svg>
       </button>
     </div>
 
     <div id="mobile-drawer" class="mobile-drawer" role="menu" aria-label="Menú móvil">
       <a href="#servicios" role="menuitem">Servicios</a>
+      <a href="#proyectos" role="menuitem">Proyectos</a> <!-- NUEVO -->
       <a href="#inventario" role="menuitem">Inventario</a>
       <a href="#proceso" role="menuitem">Proceso</a>
       <a href="#contacto" role="menuitem">Contacto</a>
@@ -254,7 +407,7 @@
   <!-- HERO -->
   <header class="hero">
     <div class="container">
-      <h1>Sonido impecable,<br>cero sorpresas.</h1>
+      <h1>Ingeniería Acústica<br>para Momentos Inolvidables.</h1> <!-- CAMBIO: Nuevo eslogan -->
       <p>Diseñamos y operamos experiencias sonoras premium para eventos corporativos, bodas de alto nivel y conciertos. Ingeniería, consultoría y ejecución con precisión.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#servicios">Explorar Servicios</a>
@@ -264,11 +417,55 @@
   </header>
 
   <main id="main" role="main">
+  
+    <!-- === NUEVO: SECCIÓN 'POR QUÉ ELEGIRNOS' === -->
+    <section id="porque-nosotros" class="fade-in-section" aria-label="Nuestros diferenciadores">
+        <div class="container">
+            <h2 class="section-title">Ingeniería, no solo alquiler</h2>
+            <p class="section-subtitle">Tu evento es único y merece más que un simple sistema de sonido. Merece un diseño acústico inteligente y una operación que garantice la perfección.</p>
+            <div class="differentiators-grid">
+                <div class="differentiator-card">
+                    <div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>
+                    <h3>Operación Profesional</h3>
+                    <p>Un ingeniero de sonido dedicado en tu evento, no un técnico. Monitoreamos y ajustamos activamente para un sonido óptimo de principio a fin.</p>
+                </div>
+                <div class="differentiator-card">
+                    <div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg></div>
+                    <h3>Plan de Contingencia</h3>
+                    <p>La prevención es clave. Contamos con cableado y equipos de respaldo para componentes críticos, asegurando que el show siempre continúe.</p>
+                </div>
+                <div class="differentiator-card">
+                    <div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H3V8h18v8zM9 15v-2H7v2h2zm4 0v-2h-2v2h2zm4 0v-2h-2v2h2z"/></svg></div>
+                    <h3>Diseño Acústico a Medida</h3>
+                    <p>Analizamos el lugar y tus necesidades para diseñar una cobertura sonora uniforme, evitando zonas muertas o ecos molestos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SERVICIOS (TABS) -->
     <section id="servicios" class="fade-in-section" aria-label="Servicios">
       <div class="container">
         <h2 class="section-title">Soluciones a la medida</h2>
         <p class="section-subtitle">Selecciona el formato que mejor se adapte a tu evento para ver detalles técnicos y equipamiento.</p>
+
+        <div class="speaker-reveal-wrap">
+          <div class="speaker-reveal">
+            <div class="speaker-copy">
+              <h3>Sonido con presencia real</h3>
+              <p>Un refuerzo claro, con pegada y cobertura uniforme. Nuestro sistema está calibrado para que cada palabra y cada nota lleguen con definición.</p>
+            </div>
+            <figure class="speaker-visual" aria-hidden="true">
+              <span class="badge-live">LIVE</span>
+              <div class="surround"></div>
+              <div class="cone"></div>
+              <div class="dustcap"></div>
+              <div class="waves">
+                <i class="wave"></i><i class="wave"></i><i class="wave"></i>
+              </div>
+            </figure>
+          </div>
+        </div>
 
         <div class="service-tabs" role="tablist" aria-label="Formatos de servicio">
           <button role="tab" aria-selected="true" aria-controls="panel-social" id="tab-social" class="tab-btn">Social Pequeño</button>
@@ -303,8 +500,7 @@
                 </div>
               </div>
               <div class="service-image">
-                <img src="https://raw.githubusercontent.com/camilosl12/phonex-audio/main/Imagen%20Social%20pequeno.jpg"
-                     alt="Evento social pequeño" loading="lazy" decoding="async" width="900" height="675">
+                <img src="https://raw.githubusercontent.com/camilosl12/phonex-audio/main/Imagen%20Social%20pequeno.jpg" alt="Evento social pequeño" loading="lazy" decoding="async" width="900" height="675">
               </div>
             </article>
           </section>
@@ -317,14 +513,13 @@
                 <p>Máxima inteligibilidad de voz y un montaje sobrio que refuerza tu marca.</p>
                 <ul>
                   <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div><div><h4>Capacidad: hasta 150 personas</h4><p>Cada palabra se escucha con claridad.</p></div></li>
-                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></div><div><h4>Equipamiento clave</h4><p>2 N15a, consola Xenyx 2442FX, set 4 inalámbricos.</p></div></li>
+                  <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c1.1 0 2 .9 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg></div><div><h4>Equipamiento clave</h4><p>2 N15a, consola Xenyx 2442FX, set 4 inalámbricos.</p></div></li>
                   <li><div class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><div><h4>Ideal para</h4><p>Conferencias, lanzamientos, asambleas y capacitaciones.</p></div></li>
                 </ul>
                 <div class="cta" style="justify-content:flex-start"><a href="#contacto" class="btn btn-primary">Cotizar este formato</a></div>
               </div>
               <div class="service-image">
-                <img src="https://raw.githubusercontent.com/camilosl12/phonex-audio/main/imagen%20corporativo.png"
-                     alt="Evento corporativo" loading="lazy" decoding="async" width="900" height="675">
+                <img src="https://raw.githubusercontent.com/camilosl12/phonex-audio/main/imagen%20corporativo.png" alt="Evento corporativo" loading="lazy" decoding="async" width="900" height="675">
               </div>
             </article>
           </section>
@@ -343,8 +538,7 @@
                 <div class="cta" style="justify-content:flex-start"><a href="#contacto" class="btn btn-primary">Cotizar este formato</a></div>
               </div>
               <div class="service-image">
-                <img src="https://raw.githubusercontent.com/camilosl12/phonex-audio/main/imagen%20formato%20boda.jpeg"
-                     alt="Boda y evento social" loading="lazy" decoding="async" width="900" height="675">
+                <img src="https://raw.githubusercontent.com/camilosl12/phonex-audio/main/imagen%20formato%20boda.jpeg" alt="Boda y evento social" loading="lazy" decoding="async" width="900" height="675">
               </div>
             </article>
           </section>
@@ -363,8 +557,7 @@
                 <div class="cta" style="justify-content:flex-start"><a href="#contacto" class="btn btn-primary">Cotizar este formato</a></div>
               </div>
               <div class="service-image">
-                <img src="https://raw.githubusercontent.com/camilosl12/phonex-audio/main/imagen%20banda.png"
-                     alt="Concierto y banda" loading="lazy" decoding="async" width="900" height="675">
+                <img src="https://raw.githubusercontent.com/camilosl12/phonex-audio/main/imagen%20banda.png" alt="Concierto y banda" loading="lazy" decoding="async" width="900" height="675">
               </div>
             </article>
           </section>
@@ -372,8 +565,34 @@
       </div>
     </section>
 
+    <!-- === NUEVO: SECCIÓN PORTAFOLIO === -->
+    <section id="proyectos" class="fade-in-section" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)" aria-label="Proyectos Destacados">
+        <div class="container">
+            <h2 class="section-title">Nuestro trabajo en acción</h2>
+            <p class="section-subtitle">Montajes impecables y experiencias sonoras memorables. Así se ve y se siente la calidad Phonex Audio.</p>
+            <div class="portfolio-grid">
+                <a href="#" class="portfolio-item">
+                    <img src="https://placehold.co/800x600/0A192F/FFF?text=Boda" alt="Montaje de sonido para boda elegante" loading="lazy">
+                    <div class="overlay"><h3>Boda Hacienda La Martina</h3></div>
+                </a>
+                <a href="#" class="portfolio-item">
+                    <img src="https://placehold.co/800x600/3B82F6/FFF?text=Corporativo" alt="Sonido para evento corporativo" loading="lazy">
+                    <div class="overlay"><h3>Lanzamiento de Marca - Ágora</h3></div>
+                </a>
+                <a href="#" class="portfolio-item">
+                    <img src="https://placehold.co/800x600/00BFA6/FFF?text=Concierto" alt="Consola de sonido en concierto" loading="lazy">
+                    <div class="overlay"><h3>Festival Rock al Parque (Backline)</h3></div>
+                </a>
+                 <a href="#" class="portfolio-item">
+                    <img src="https://placehold.co/800x600/64748B/FFF?text=Conferencia" alt="Micrófonos en conferencia" loading="lazy">
+                    <div class="overlay"><h3>Congreso Nacional de Medicina</h3></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- INVENTARIO -->
-    <section id="inventario" class="fade-in-section" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)" aria-label="Inventario">
+    <section id="inventario" class="fade-in-section" aria-label="Inventario">
       <div class="container">
         <h2 class="section-title">Inventario técnico profesional</h2>
         <p class="section-subtitle">Equipos mantenidos y calibrados antes de cada evento. Cableado seguro y redundancias críticas para máxima fiabilidad.</p>
@@ -418,7 +637,7 @@
     </section>
 
     <!-- PROCESO -->
-    <section id="proceso" class="fade-in-section" aria-label="Proceso">
+    <section id="proceso" class="fade-in-section" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)" aria-label="Proceso">
       <div class="container">
         <h2 class="section-title">Nuestro proceso: precisión en 5 pasos</h2>
         <p class="section-subtitle">De la consulta inicial al desmontaje final, garantizamos una ejecución impecable y comunicación constante.</p>
@@ -432,25 +651,35 @@
       </div>
     </section>
 
-    <!-- FAQ visible -->
-    <section aria-label="Preguntas frecuentes" class="fade-in-section">
-      <div class="container">
-        <h2 class="section-title">Preguntas frecuentes</h2>
-        <div class="faq">
-          <details>
-            <summary>¿Atienden fuera de Bogotá?</summary>
-            <p>Sí, cubrimos Bogotá y ciudades cercanas. Para otras zonas coordinamos logística y viáticos.</p>
-          </details>
-          <details>
-            <summary>¿Cómo definen la potencia adecuada?</summary>
-            <p>Según aforo, música y espacio. Calculamos cobertura, realizamos pruebas y ajustamos niveles y filtros para garantizar claridad.</p>
-          </details>
-          <details>
-            <summary>¿Ofrecen microfonía inalámbrica y grabación?</summary>
-            <p>Contamos con sets inalámbricos y podemos grabar audio del evento si lo requieres (previa coordinación).</p>
-          </details>
+    <!-- === NUEVO: SECCIÓN TESTIMONIOS === -->
+    <section id="testimonios" class="fade-in-section" aria-label="Testimonios de clientes">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <p class="section-subtitle">La tranquilidad y el éxito de sus eventos es nuestra mayor satisfacción.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <blockquote>"El sonido de nuestra boda fue simplemente perfecto. Desde la ceremonia hasta la fiesta, todo se escuchó con una claridad increíble. ¡Gracias por su profesionalismo!"</blockquote>
+                    <footer>
+                        Ana & David
+                        <span>Novios Satisfechos</span>
+                    </footer>
+                </div>
+                <div class="testimonial-card">
+                    <blockquote>"Contratamos a Phonex para nuestro lanzamiento de producto y el resultado superó las expectativas. Montaje rápido, discreto y una operación sin fallas. Totalmente recomendados."</blockquote>
+                    <footer>
+                        Laura Jiménez
+                        <span>Gerente de Marketing, TechCorp</span>
+                    </footer>
+                </div>
+                <div class="testimonial-card">
+                    <blockquote>"Como wedding planner, necesito proveedores de confianza. Phonex Audio es mi primera opción para sonido. Siempre puntuales, proactivos y con una calidad de audio excepcional."</blockquote>
+                    <footer>
+                        Sofía Restrepo
+                        <span>Wedding Planner</span>
+                    </footer>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- CONTACTO / COTIZACIÓN -->
@@ -549,7 +778,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in-section').forEach(el => io.observe(el));
 
-    // Canvas ecualizador (pausado si reduced-motion)
+    // Canvas ecualizador
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const canvas = document.getElementById('hero-background');
     if (!prefersReduced && canvas) {
@@ -592,6 +821,20 @@
       init(); loop();
     }
 
+    // IntersectionObserver para activar el parlante
+    const speaker = document.querySelector('.speaker-visual');
+    if (speaker) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            speaker.classList.add('in');
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      obs.observe(speaker);
+    }
+
     // Formulario: WhatsApp prellenado + feedback simple
     const form = document.getElementById('quote-form');
     const msg = document.getElementById('form-msg');
@@ -607,7 +850,7 @@
     }
     if (wa) {
       wa.href = buildWAUrl();
-      wa.addEventListener('click', () => { /* tracking sencillo */ console.log('WA click'); });
+      wa.addEventListener('click', () => { console.log('WA click'); });
     }
     form?.addEventListener('input', () => { if (wa) wa.href = buildWAUrl(); });
     form?.addEventListener('submit', (e) => {
