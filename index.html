@@ -699,14 +699,17 @@
     const tabs = [...document.querySelectorAll('[role="tab"]')];
     const panels = [...document.querySelectorAll('[role="tabpanel"]')];
 
-    function activateTab(t){
+    function activateTab(t, setFocus = true){
       tabs.forEach(b => b.setAttribute('aria-selected','false'));
       panels.forEach(p => { p.style.display='none'; p.classList.remove('active'); });
       t.setAttribute('aria-selected','true');
       const panel = document.getElementById(t.getAttribute('aria-controls'));
       if(panel){ panel.style.display='block'; panel.classList.add('active'); }
-      t.focus();
+      if (setFocus) {
+        t.focus();
+      }
     }
+    
     tabs.forEach(t => {
       t.addEventListener('click', () => activateTab(t));
       t.addEventListener('keydown', e => {
@@ -715,7 +718,9 @@
         if(e.key==='ArrowLeft') activateTab(tabs[(i-1+tabs.length)%tabs.length]);
       });
     });
-    const initial = document.querySelector('[role="tab"][aria-selected="true"]'); if(initial) activateTab(initial);
+    
+    const initial = document.querySelector('[role="tab"][aria-selected="true"]'); 
+    if(initial) activateTab(initial, false); // No enfocar en la carga inicial
 
     // Fade-in on scroll
     const io = new IntersectionObserver(entries => {
